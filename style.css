@@ -372,6 +372,13 @@ i.apple:after {
   position: relative;
   border-right: 1px solid #81424a;
   border-left: 1px solid #81424a;
+  animation: rosto 0.3s ease-in-out alternate-reverse infinite var(--delay)
+    forwards;
+}
+@keyframes rosto {
+  100% {
+    height: calc(var(--rosto-height) + 4px);
+  }
 }
 .rosto::before {
   content: "";
@@ -410,6 +417,16 @@ i.apple:after {
     -0.3rem -3rem 1.3rem 0.9rem #ffffff99, -0.8rem -0.9rem 0.6rem 1rem #00000780,
     -1.5rem 0.1rem 1rem 0.3rem #b17462, -2.2rem 2rem 3rem 0rem #7d5841,
     0.1rem 2rem 3rem #d2a79180, -2.5rem -3.3rem 9rem 7rem #d2a791cc;
+  animation: olho-pisca 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) alternate
+    infinite calc(var(--delay) * 1.2) both;
+}
+@keyframes olho-pisca {
+  95% {
+    transform: scale(0.07) rotate(-35deg);
+  }
+  100% {
+    transform: scale(0) rotate(-35deg);
+  }
 }
 
 .olho::before {
@@ -444,40 +461,7 @@ i.apple:after {
 .olho-esquerdo {
   right: -40px;
 }
-.palpebra::before,
-.palpebra::after {
-  content: "";
-  display: block;
-  background-color: #d9ad98;
-  width: 16px;
-  height: 1px;
-  position: absolute;
-  z-index: 10;
-  top: 67px;
-  left: 45px;
-  border-radius: 100% 0% 70% 0% / 100% 0% 70% 0;
-  transform-origin: top;
-  transform: rotate(27deg);
-  animation: palpebra 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) alternate
-    infinite calc(var(--delay) * 1.2) both;
-}
-.palpebra::after {
-  right: 19px;
-  left: auto;
-}
-@keyframes palpebra {
-  95% {
-    width: 16px;
-    height: 1px;
-    transform: rotate(27deg) translate(0, 0);
-    border: 0;
-  }
-  100% {
-    transform: rotate(57deg) translate(5px, 0px);
-    width: 25px;
-    height: 32px;
-  }
-}
+
 .olho-direito {
   left: -35px;
 }
@@ -499,12 +483,32 @@ i.apple:after {
   transform: rotate(180deg) translate(-28px, -21px);
   border-radius: 50%;
   box-shadow: 6px 8px 0 0 #9b6316;
+  animation: sobrancelha-esquerda 2.5s ease alternate infinite
+    calc(var(--delay) * 1.2);
 }
 .sobrancelha::after {
   transform: rotate(190deg) translate(19px, -23px);
   border-radius: 76% 100%;
   box-shadow: 2px 9px 0 0 #9b6316;
   right: 0;
+  animation: sobrancelha-direita 2.5s ease alternate infinite
+    calc(var(--delay) * 1.2);
+}
+@keyframes sobrancelha-esquerda {
+  70% {
+    transform: rotate(180deg) translate(-28px, -21px);
+  }
+  100% {
+    transform: rotate(182deg) translate(-28px, -25px);
+  }
+}
+@keyframes sobrancelha-direita {
+  70% {
+    transform: rotate(190deg) translate(19px, -23px);
+  }
+  100% {
+    transform: rotate(192deg) translate(15px, -30px);
+  }
 }
 
 .nariz {
@@ -621,8 +625,11 @@ i.apple:after {
   border-right: 2px solid #9c6564;
   transform: translateX(-50%) rotate(0deg);
   border-radius: 10% 45% 51% 80% / 25% 25% 100% 100%;
-  box-shadow: inset 5px 1px 4px rgba(0, 0, 0, 0.19),
-    inset -4px 0px 3px rgba(0, 0, 0, 0.16);
+  /* prettier-ignore */
+  box-shadow: 
+    inset 5px 1px 4px rgba(0, 0, 0, 0.19),
+    inset -4px 0px 3px rgba(0, 0, 0, 0.16), 
+    4px 10px 10px 5px rgba(195,119,95,.5);
   animation: boca 1s ease-in-out alternate-reverse infinite var(--delay)
     forwards;
 }
@@ -654,6 +661,38 @@ i.apple:after {
     height: 18px;
   }
 }
+.queixo {
+  width: 30px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #9d6b59;
+  position: absolute;
+  top: 26px;
+  left: 20px;
+  filter: blur(5px) opacity(0.75);
+  animation: queixo 1s ease-in-out alternate-reverse infinite var(--delay)
+    forwards;
+}
+@keyframes queixo {
+  20% {
+    height: 2px;
+  }
+  40% {
+    height: 7px;
+  }
+  50% {
+    height: 2px;
+  }
+  70% {
+    height: 7px;
+  }
+  90% {
+    height: 7px;
+  }
+  100% {
+    height: 2px;
+  }
+}
 .pescoco {
   position: relative;
   top: -10px;
@@ -667,6 +706,13 @@ i.apple:after {
   background-color: var(--tom-pele2);
   position: relative;
   z-index: -1;
+  animation: pescoco 0.3s ease-in-out alternate-reverse infinite var(--delay)
+    forwards;
+}
+@keyframes pescoco {
+  100% {
+    height: 46px;
+  }
 }
 .pescoco::after {
   content: "";
@@ -827,17 +873,18 @@ i.apple:after {
 }
 
 .fala {
-  width: 320px;
+  width: 310px;
   height: 80px;
   background: white;
   position: absolute;
   border-radius: 10px;
   right: -350px;
-  top: 100px;
-  transform: rotate(-5deg);
-  padding: 12px 20px 0 20px;
-  font-size: 24px;
-  line-height: 1.7rem;
+  top: 120px;
+  transform: rotate(-6deg);
+  padding: 12px 30px 0 20px;
+  box-sizing: content-box;
+  font-size: 23px;
+  line-height: 1.5rem;
   color: var(--amarelo-dark);
   box-shadow: 6px 4px 0 3px rgba(0, 0, 0, 0.4);
 }
@@ -852,22 +899,136 @@ i.apple:after {
   border-right: 26px solid white;
   border-bottom: 13px solid transparent;
 }
-.fala span:not(:nth-child(1)) {
-  display: none;
+.fala,
+.fala span {
+  opacity: 0;
 }
-.fala span:not(:nth-child(1)) {
-  display: none;
+.fala span {
+  position: absolute;
+  vertical-align: middle;
+}
+/* prettier-ignore */
+.fala {
+  animation: 
+    fala-dialog 1s ease-in 1 var(--delay) forwards,
+    fala-balanco 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) alternate infinite var(--delay) forwards,
+    hide 1s ease-out 1 calc(var(--delay) * 15) forwards;
+}
+@keyframes fala-dialog {
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fala-balanco {
+  100% {
+    right: -345px;
+    top: 118px;
+    transform: rotate(-5deg);
+  }
+}
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.fala span:nth-child(1) {
+  animation: fala 6s ease-in-out alternate 1 var(--delay);
+}
+.fala span:nth-child(2) {
+  animation: fala 6s ease-in-out alternate 1 calc(var(--delay) * 3);
+}
+.fala span:nth-child(3) {
+  animation: fala 6s ease-in-out alternate 1 calc(var(--delay) * 5.2);
+}
+.fala span:nth-child(4) {
+  animation: fala 6s ease-in-out alternate 1 calc(var(--delay) * 7);
+}
+.fala span:nth-child(5) {
+  animation: fala 6s ease-in-out alternate 1 calc(var(--delay) * 9);
+}
+.fala span:nth-child(6) {
+  animation: fala-ultima 6s ease-in 1 calc(var(--delay) * 11) forwards;
+  font-size: 30px;
+  line-height: 4rem;
+}
+@keyframes fala {
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fala-ultima {
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.screen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 9;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.84);
+  animation: hide 1s ease-in 1 1s forwards;
+}
+.youtube-buttom {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--deschamps-width);
+  height: calc(var(--deschamps-width) / 1.53);
+  /* prettier-ignore */
+  animation: 
+    youtube-button 1s ease-in 1 1s forwards,
+    hide 1s ease-in 1 6s forwards;
+}
+@keyframes youtube-button {
+  100% {
+    left: 0;
+    top: 0;
+    transform: translate(0, 0) scale(0.5);
+  }
+}
+.youtube-buttom span {
+  opacity: 0;
+  animation: show 3s ease-in 1 1s forwards;
+  color: #fff;
+  font-size: 37px;
+  text-align: center;
+  display: block;
+  line-height: 4rem;
 }
 i.youtube-icon {
   display: block;
-  width: 200px;
-  height: 130px;
+  width: 100%;
+  height: 100%;
   border-radius: 30px;
   background-color: #ff0000;
   background: linear-gradient(to bottom, #ff0000 30%, orangered 100%);
-  position: absolute;
-  top: 5%;
-  right: 5%;
 }
 i.youtube-icon::after {
   content: "";
