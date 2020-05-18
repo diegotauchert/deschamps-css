@@ -17,6 +17,7 @@
   --hair-color: #9b6316;
   --hair2-color: #dda842;
   --hair3-color: #c9841f;
+  --delay: 3s;
 }
 
 *,
@@ -380,7 +381,14 @@ i.apple:after {
   background-color: #81424a;
   position: absolute;
   border-radius: 50%;
-  filter: blur(20px) opacity(0.55);
+  filter: blur(20px) opacity(0.5);
+  animation: toggle-light-face 5s ease-in-out alternate-reverse infinite
+    forwards;
+}
+@keyframes toggle-light-face {
+  100% {
+    opacity: 0.3;
+  }
 }
 .olho {
   transform-origin: center;
@@ -435,6 +443,40 @@ i.apple:after {
 }
 .olho-esquerdo {
   right: -40px;
+}
+.palpebra::before,
+.palpebra::after {
+  content: "";
+  display: block;
+  background-color: #d9ad98;
+  width: 16px;
+  height: 1px;
+  position: absolute;
+  z-index: 10;
+  top: 67px;
+  left: 45px;
+  border-radius: 100% 0% 70% 0% / 100% 0% 70% 0;
+  transform-origin: top;
+  transform: rotate(27deg);
+  animation: palpebra 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) alternate
+    infinite calc(var(--delay) * 1.2) both;
+}
+.palpebra::after {
+  right: 19px;
+  left: auto;
+}
+@keyframes palpebra {
+  95% {
+    width: 16px;
+    height: 1px;
+    transform: rotate(27deg) translate(0, 0);
+    border: 0;
+  }
+  100% {
+    transform: rotate(57deg) translate(5px, 0px);
+    width: 25px;
+    height: 32px;
+  }
 }
 .olho-direito {
   left: -35px;
@@ -539,6 +581,28 @@ i.apple:after {
   right: 60px;
   border-radius: 50%;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  animation: sinal 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) alternate infinite
+    var(--delay) both;
+}
+@keyframes sinal {
+  20% {
+    transform: translate(0, 1px);
+  }
+  40% {
+    transform: translate(0, -1px);
+  }
+  50% {
+    transform: translate(0, 1px);
+  }
+  70% {
+    transform: translate(0, -1px);
+  }
+  90% {
+    transform: translate(0, 1px);
+  }
+  100% {
+    transform: translate(0, -1px);
+  }
 }
 .boca {
   width: 70px;
@@ -559,6 +623,36 @@ i.apple:after {
   border-radius: 10% 45% 51% 80% / 25% 25% 100% 100%;
   box-shadow: inset 5px 1px 4px rgba(0, 0, 0, 0.19),
     inset -4px 0px 3px rgba(0, 0, 0, 0.16);
+  animation: boca 1s ease-in-out alternate-reverse infinite var(--delay)
+    forwards;
+}
+@keyframes boca {
+  20% {
+    width: 75px;
+    height: 20px;
+  }
+  40% {
+    width: 70px;
+    height: 28px;
+  }
+  50% {
+    width: 60px;
+    height: 18px;
+    border-bottom: 12px solid #9c6564;
+  }
+  70% {
+    width: 68px;
+    height: 30px;
+  }
+  90% {
+    width: 70px;
+    height: 28px;
+    border-bottom: 9px solid #9c6564;
+  }
+  100% {
+    width: 60px;
+    height: 18px;
+  }
 }
 .pescoco {
   position: relative;
@@ -584,6 +678,7 @@ i.apple:after {
   clip-path: circle(55% at 50% 0);
   border-radius: 22%;
   transform: translate(53px, -5px);
+  box-shadow: inset 2px -20px 7px 10px rgba(182, 119, 87, 0.5);
 }
 .pescoco div {
   position: absolute;
@@ -599,7 +694,7 @@ i.apple:after {
 .corpo {
   background-color: #252430;
   background: radial-gradient(
-    ellipse closest-corner at 65px 85px,
+    ellipse closest-corner at 75px 85px,
     #000 0%,
     #252430 100%
   );
@@ -671,6 +766,65 @@ i.apple:after {
 .oculos .haste::after {
   right: -20px;
 }
+.manga-camisa {
+  width: 100%;
+}
+.manga-camisa::before,
+.manga-camisa::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 90px;
+  z-index: -2;
+  height: 140px;
+  top: 25px;
+  background-color: #252430;
+}
+.manga-camisa::before {
+  left: -75px;
+  border-radius: 80% 0% 52% 0% / 100% 0% 70% 0%;
+  background: radial-gradient(
+    ellipse farthest-side at 55px 45px,
+    #000 0%,
+    #252430 100%
+  );
+}
+.manga-camisa::after {
+  right: -75px;
+  border-radius: 0% 80% 0% 52% / 0% 100% 0% 70%;
+  background: radial-gradient(
+    ellipse closest-corner at 65px 85px,
+    #000 0%,
+    #252430 100%
+  );
+}
+.bracos {
+  width: 100%;
+  position: relative;
+  top: 180px;
+}
+.bracos::before,
+.bracos::after {
+  content: "";
+  display: block;
+  width: 92px;
+  background-color: #e3ad90;
+  background: linear-gradient(to bottom left, #e3ad90, #cb9075);
+  position: absolute;
+  z-index: -3;
+  height: 150px;
+  border-radius: 0% 100% 0% 100% / 0% 100% 0% 100%;
+}
+.bracos::before {
+  transform: rotate(-7deg) translate(116px, -34px);
+  right: 0;
+  box-shadow: inset 3px 2px 4px #cf8354;
+}
+.bracos::after {
+  transform: rotate(21deg) translate(-100px, -6px);
+  left: 0;
+  box-shadow: inset -3px 28px 4px #cf8354;
+}
 
 .fala {
   width: 320px;
@@ -688,6 +842,7 @@ i.apple:after {
   box-shadow: 6px 4px 0 3px rgba(0, 0, 0, 0.4);
 }
 .fala:before {
+  content: "";
   position: absolute;
   right: 100%;
   top: 26px;
@@ -696,7 +851,12 @@ i.apple:after {
   border-top: 13px solid transparent;
   border-right: 26px solid white;
   border-bottom: 13px solid transparent;
-  content: "";
+}
+.fala span:not(:nth-child(1)) {
+  display: none;
+}
+.fala span:not(:nth-child(1)) {
+  display: none;
 }
 i.youtube-icon {
   display: block;
