@@ -41,10 +41,11 @@ body {
   height: 100vh;
   width: 100vw;
   flex-direction: row;
+  overflow: hidden;
 }
 
 .laptop {
-  width: 400px;
+  width: 380px;
   height: 300px;
   background-color: #222;
   background-image: radial-gradient(
@@ -58,9 +59,11 @@ body {
   justify-content: center;
   box-shadow: inset -3px 2px #888699;
   border-radius: 3%;
-  position: relative;
+  position: absolute;
+  left: 0;
   z-index: 3;
-  transform: skew(15deg, 1deg) rotateX(-10deg) translate(-25px, 5px);
+  transform: skew(15deg, 1deg) rotateX(-10deg) translate(15px, 5px);
+  transform-origin: bottom right;
 }
 .laptop::before {
   content: "";
@@ -73,6 +76,7 @@ body {
   border-bottom: 17px solid rgba(0, 0, 0, 0.8);
   border-right: 80px solid transparent;
   transform: rotate(-1deg);
+  z-index: 5;
 }
 i.apple {
   background: #2b3248;
@@ -103,15 +107,19 @@ i.apple:after {
   position: absolute;
   border-radius: 50%;
   z-index: 2;
-  box-shadow: 14px -35px 0 #312f3c, /* CIRCLE TOP */ 12px 27px 0 #3b3847,
-    /* CIRCLE BOTTOM */ 39px -10px 0 #393646; /* CIRCLE RIGHT */
+  /* prettier-ignore */
+  box-shadow: 
+    14px -35px 0 #312f3c, 
+    12px 27px 0 #3b3847,
+    39px -10px 0 #393646;
 }
 
 .table {
-  position: relative;
+  position: absolute;
+  bottom: -5px;
   z-index: 2;
   width: 100vw;
-  height: 15px;
+  height: 20px;
   background-color: #b6b0ba;
   background-image: linear-gradient(to bottom, #e0d8e0, #b6b0ba);
   box-shadow: 5px -2px 8px rgba(0, 0, 0, 0.2),
@@ -193,6 +201,7 @@ i.apple:after {
   left: 10%;
   top: 10%;
   filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   opacity: 0.5;
 }
 .folhas {
@@ -337,11 +346,10 @@ i.apple:after {
 .deschamps {
   width: var(--deschamps-width);
   height: var(--deschamps-height);
-  position: absolute;
+  position: relative;
   bottom: 0;
-  left: 54%;
-  transform: translateX(-50%);
-  z-index: 2;
+  transform-origin: bottom;
+  z-index: 1;
 }
 .deschamps .light-bg {
   width: calc(var(--deschamps-width) + 40px);
@@ -367,8 +375,6 @@ i.apple:after {
   margin: 0 auto;
   border-radius: 32% 32% 65% 50% / 60% 49% 78% 70%;
   background-image: radial-gradient(ellipse, #dfad94, var(--tom-pele2));
-  border-left: 5px solid var(--tom-pele2);
-  border-right: 5px solid var(--tom-pele2);
   position: relative;
   border-right: 1px solid #81424a;
   border-left: 1px solid #81424a;
@@ -633,6 +639,7 @@ i.apple:after {
   animation: boca 1s ease-in-out alternate-reverse infinite var(--delay)
     forwards;
 }
+
 @keyframes boca {
   20% {
     width: 75px;
@@ -670,6 +677,7 @@ i.apple:after {
   top: 26px;
   left: 20px;
   filter: blur(5px) opacity(0.75);
+  -webkit-backdrop-filter: blur(5px) opacity(0.75);
   animation: queixo 1s ease-in-out alternate-reverse infinite var(--delay)
     forwards;
 }
@@ -735,6 +743,7 @@ i.apple:after {
   height: 40px;
   background-color: #d38c78;
   filter: blur(8px) opacity(0.6);
+  -webkit-backdrop-filter: blur(8px) opacity(0.6);
   z-index: -1;
 }
 .corpo {
@@ -744,7 +753,7 @@ i.apple:after {
     #000 0%,
     #252430 100%
   );
-  height: 300px;
+  height: 270px;
   width: 100%;
   border-radius: 45% 43% 0% 0% / 17% 19% 0% 0%;
   position: relative;
@@ -853,7 +862,7 @@ i.apple:after {
 .bracos::after {
   content: "";
   display: block;
-  width: 92px;
+  width: 100px;
   background-color: #e3ad90;
   background: linear-gradient(to bottom left, #e3ad90, #cb9075);
   position: absolute;
@@ -862,12 +871,12 @@ i.apple:after {
   border-radius: 0% 100% 0% 100% / 0% 100% 0% 100%;
 }
 .bracos::before {
-  transform: rotate(-7deg) translate(116px, -34px);
+  transform: rotate(-7deg) translate(120px, -35px);
   right: 0;
   box-shadow: inset 3px 2px 4px #cf8354;
 }
 .bracos::after {
-  transform: rotate(21deg) translate(-100px, -6px);
+  transform: rotate(21deg) translate(-105px, -20px);
   left: 0;
   box-shadow: inset -3px 28px 4px #cf8354;
 }
@@ -887,6 +896,7 @@ i.apple:after {
   line-height: 1.5rem;
   color: var(--amarelo-dark);
   box-shadow: 6px 4px 0 3px rgba(0, 0, 0, 0.4);
+  z-index: 12;
 }
 .fala:before {
   content: "";
@@ -912,7 +922,7 @@ i.apple:after {
   animation: 
     fala-dialog 1s ease-in 1 var(--delay) forwards,
     fala-balanco 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) alternate infinite var(--delay) forwards,
-    hide 1s ease-out 1 calc(var(--delay) * 15) forwards;
+    hide 1s ease-out 1 calc(var(--delay) * 18) forwards;
 }
 @keyframes fala-dialog {
   100% {
@@ -958,7 +968,10 @@ i.apple:after {
   animation: fala 6s ease-in-out alternate 1 calc(var(--delay) * 9);
 }
 .fala span:nth-child(6) {
-  animation: fala-ultima 6s ease-in 1 calc(var(--delay) * 11) forwards;
+  animation: fala 6s ease-in-out alternate 1 calc(var(--delay) * 11);
+}
+.fala span:nth-child(7) {
+  animation: fala-ultima 6s ease-in 1 calc(var(--delay) * 13) forwards;
   font-size: 30px;
   line-height: 4rem;
 }
@@ -1069,8 +1082,8 @@ i.youtube-icon::after {
     8px 21px 0 -14px rgba(0, 0, 0, 0.075);
   transform: rotate(28deg);
   position: absolute;
-  right: -45px;
-  bottom: 27px;
+  right: -41px;
+  bottom: 34px;
 }
 .cabelo div:nth-child(1)::before {
   content: "";
@@ -1272,4 +1285,46 @@ i.youtube-icon::after {
   top: 0px;
   z-index: -8;
   right: -20px;
+}
+
+.crafted {
+  color: #fff;
+  font-size: 13px;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+}
+
+@media (max-width: 1024px) {
+  .deschamps {
+    transform: scale(0.6) !important;
+    left: 5%;
+  }
+  .laptop {
+    transform: scale(0.6) skew(15deg, 1deg) rotateX(-10deg) translate(20px, 5px);
+  }
+  .planta {
+    transform: scale(0.6) translate(70px, 40px) !important;
+  }
+}
+@media (min-width: 370px) and (max-width: 800px) {
+  .deschamps {
+    transform: scale(0.4) !important;
+    left: 5%;
+  }
+  .laptop {
+    transform: scale(0.4) skew(15deg, 1deg) rotateX(-10deg)
+      translate(-500px, 5px);
+  }
+  .planta {
+    transform: scale(0.4) translate(70px, 40px) !important;
+  }
+}
+@media (max-width: 400px) {
+  .planta {
+    transform: scale(0.4) translate(120px, 40px) !important;
+  }
+  .fala {
+    display: none;
+  }
 }
